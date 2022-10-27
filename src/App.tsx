@@ -1,25 +1,13 @@
-import { useQuery } from 'react-query';
+import { Route, Routes } from "react-router-dom";
 
-type Repository = {
-  full_name: string;
-  description: string;
-}
+import { Repo } from "./pages/Repo";
+import { Repos } from "./pages/Repos";
 
-function App() {
-
-  return(
-    <ul>
-      {isFetching && <p>Carregando...</p>}
-      {repositories?.map(repo => {
-        return(
-          <li key={repo.full_name}>
-            <strong>{repo.full_name}</strong>
-            <p>{repo.description}</p>
-          </li>
-        )
-      })}
-    </ul>
+export function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Repos />} />
+      <Route path="/repos/*" element={<Repo />} />
+    </Routes>
   )
 }
-
-export default App
