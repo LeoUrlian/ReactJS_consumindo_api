@@ -2,6 +2,8 @@ import axios from 'axios';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
 
+import './Repos.css'
+
 export type Repository = {
   full_name: string;
   description: string;
@@ -21,12 +23,22 @@ export function Repos() {
       {isFetching && <p>Carregando...</p>}
       {data?.map(repo => {
         return (
-          <li key={repo.full_name}>
-            <Link to={`repos/${repo.full_name}`}>
-              {repo.full_name}
-            </Link>
-            <p>{repo.description}</p>
-          </li>
+          <table>
+            <tr>
+              <th>Repositório</th>
+              <th>Descrição</th>
+            </tr>
+            <tr>
+              <td key={repo.full_name}>
+                <Link to={`repos/${repo.full_name}`}>
+                  {repo.full_name}
+                </Link>
+              </td>
+              <td>
+                {repo.description}
+              </td>
+            </tr>
+          </table>
         )
       })}
     </ul>
